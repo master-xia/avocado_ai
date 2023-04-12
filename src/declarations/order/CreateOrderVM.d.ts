@@ -1,0 +1,3 @@
+interface CreateOrderVM {
+  PackageName: string
+}

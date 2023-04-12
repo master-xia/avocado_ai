@@ -1,0 +1,3 @@
+interface SignVM {
+  Note: string
+}

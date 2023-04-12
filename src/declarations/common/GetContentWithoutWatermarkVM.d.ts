@@ -1,0 +1,3 @@
+interface GetContentWithoutWatermarkVM {
+  Content: string
+}

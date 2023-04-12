@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0, user-scalable=0" />
+  <title>牛油果AI</title>
+  <script>
+    function getQueryStringByName(name) {
+      let result = location.search.match(
+        new RegExp("[\\?\\&]" + name + "=([^\\&]+)", "i")
+      );
+      if (result == null || result.length < 1) {
+        return "";
+      }
+      return decodeURI(result[1]);
+    }
+    let timestamp = getQueryStringByName("_t");
+    if (timestamp && !isNaN(timestamp)) {
+      timestamp = parseInt(timestamp);
+    }
+    let curTimestamp = new Date().getTime();
+    if (!timestamp || curTimestamp - timestamp > 120000) {
+      let url = window.location.origin + window.location.pathname;
+      let search = window.location.search;
+      if (timestamp) {
+        search = search.replace("_t=" + timestamp, "");
+        search = search.replace("&&", "&");
+        search = search.replace("?&", "?");
+        if (search[search.length - 1] == "&")
+          search = search.substr(0, search.length - 1);
+      }
+      if (search && search != "?") {
+        url += search + "&_t=" + curTimestamp;
+      } else {
+        url += "?_t=" + curTimestamp;
+      }
+      window.location.href = url;
+    }
+  </script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3888687_w4vwl8uq1p9.css" />
+  <script src="/config.js"></script>
+  <script src="https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/Static/touch-emulator.js"></script>
+</head>
+
+<body style="padding: 0;margin:0;background-color: #eee;">
+
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+<style type="text/css">
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+</style>
+
+</html>
